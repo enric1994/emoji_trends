@@ -10,7 +10,6 @@ MAX_LOAD_AVG = 4
 start_date = datetime.datetime(2010,1,1)
 days_number = 3500
 
-🇯🇵 🇰🇷 🇩🇪 🇨🇳 🇺🇸 🇫🇷 🇪🇸 🇮🇹 🇷🇺 🇬🇧
 
 emojis=[
     ["football","⚽"],
@@ -69,7 +68,7 @@ for emoji in emojis:
             
 
 
-        print("{} worker {} created".format(emoji[1], i))
+        
 
         os.system('python3 Exporter.py --lang "en" --querysearch "{}" --maxtweets 100000000 --output={}.csv --since {}-{}-{} --until {}-{}-{} &'.format(
             emoji[1],
@@ -78,4 +77,5 @@ for emoji in emojis:
             next_year,next_month,next_day
         ))
 
-        time.sleep(2)
+        print("{} worker {} created".format(emoji[1], i))
+        time.sleep(1)
