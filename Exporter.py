@@ -92,7 +92,7 @@ def main(argv):
                 # print(add_list)
                 # print('\n\n\n\n')
                 outputFile.writerow(add_list)
-            print('%d tweets saved on file...\n' % len(tweets))
+            # print('%d tweets saved on file...\n' % len(tweets))
 
         got.manager.TweetManager.getTweets(tweetCriteria, receiveBuffer)
 

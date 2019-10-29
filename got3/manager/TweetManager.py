@@ -29,7 +29,10 @@ class TweetManager:
         active = True
 
         while active:
-            json = TweetManager.getJsonReponse(tweetCriteria, refreshCursor, cookieJar, proxy)
+            try:
+                json = TweetManager.getJsonReponse(tweetCriteria, refreshCursor, cookieJar, proxy)
+            except:
+                break
             if len(json['items_html'].strip()) == 0:
                 break
 
@@ -43,75 +46,78 @@ class TweetManager:
                 break
 
             for tweetHTML in tweets:
-                tweetPQ = PyQuery(tweetHTML)
-                tweet = models.Tweet()
+                try:
+                    tweetPQ = PyQuery(tweetHTML)
+                    tweet = models.Tweet()
 
-                uTweet = tweetPQ("span.username.u-dir.u-textTruncate b").text()
-                if (' ' in uTweet) == True:
-                    # split and get first index
-                    usernameTweet = uTweet.split(' ')[0]
-                else:
-                    usernameTweet = uTweet
-                emojis = []
-                i = 0
-                for emoji in tweetPQ("p.js-tweet-text img"):
-                    try:
-                        em = emoji.attrib["alt"]
-                        emojis.append(em)
-                    except KeyError:
-                        pass
-                textScrap = tweetPQ("div.js-tweet-text-container p.js-tweet-text")
-                text = textScrap.html()
-                while(re.search(r'<img.*?alt=\"(.*?)\"[^\>]+>', text, flags=re.IGNORECASE)):
-                    # replacing img with emojis
-                    text = re.sub(r'<img.*?alt=\"(.*?)\"[^\>]+>', emojis[i], text, re.UNICODE)
-                    i+=1
-                    # print(text + '\n')
-                # html tags to python string using beautifulsoup
-                text = str(BeautifulSoup(text, features='lxml').get_text()).replace('\n', '  ')
-                # text = text.replace('\n', ' ')
-                retweets = int(tweetPQ("span.ProfileTweet-action--retweet span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""))
-                favorites = int(tweetPQ("span.ProfileTweet-action--favorite span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""))
-                dateSec = int(tweetPQ("small.time span.js-short-timestamp").attr("data-time"))
-                id = tweetPQ.attr("data-tweet-id")
-                permalink = tweetPQ.attr("data-permalink-path")
-                user_id = int(tweetPQ("a.js-user-profile-link").attr("data-user-id"))
+                    uTweet = tweetPQ("span.username.u-dir.u-textTruncate b").text()
+                    if (' ' in uTweet) == True:
+                        # split and get first index
+                        usernameTweet = uTweet.split(' ')[0]
+                    else:
+                        usernameTweet = uTweet
+                    emojis = []
+                    i = 0
+                    for emoji in tweetPQ("p.js-tweet-text img"):
+                        try:
+                            em = emoji.attrib["alt"]
+                            emojis.append(em)
+                        except KeyError:
+                            pass
+                    textScrap = tweetPQ("div.js-tweet-text-container p.js-tweet-text")
+                    text = textScrap.html()
+                    while(re.search(r'<img.*?alt=\"(.*?)\"[^\>]+>', text, flags=re.IGNORECASE)):
+                        # replacing img with emojis
+                        text = re.sub(r'<img.*?alt=\"(.*?)\"[^\>]+>', emojis[i], text, re.UNICODE)
+                        i+=1
+                        # print(text + '\n')
+                    # html tags to python string using beautifulsoup
+                    text = str(BeautifulSoup(text, features='lxml').get_text()).replace('\n', '  ')
+                    # text = text.replace('\n', ' ')
+                    retweets = int(tweetPQ("span.ProfileTweet-action--retweet span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""))
+                    favorites = int(tweetPQ("span.ProfileTweet-action--favorite span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""))
+                    dateSec = int(tweetPQ("small.time span.js-short-timestamp").attr("data-time"))
+                    id = tweetPQ.attr("data-tweet-id")
+                    permalink = tweetPQ.attr("data-permalink-path")
+                    user_id = int(tweetPQ("a.js-user-profile-link").attr("data-user-id"))
 
-                geo = ''
-                geoSpan = tweetPQ('span.Tweet-geo')
-                if len(geoSpan) > 0:
-                    geo = geoSpan.attr('title')
-                urls = []
-                for link in tweetPQ("a"):
-                    try:
-                        urls.append((link.attrib["data-expanded-url"]))
-                    except KeyError:
-                        pass
-                tweet.id = id
-                tweet.permalink = 'https://twitter.com' + permalink
-                tweet.username = usernameTweet
+                    geo = ''
+                    geoSpan = tweetPQ('span.Tweet-geo')
+                    if len(geoSpan) > 0:
+                        geo = geoSpan.attr('title')
+                    urls = []
+                    for link in tweetPQ("a"):
+                        try:
+                            urls.append((link.attrib["data-expanded-url"]))
+                        except KeyError:
+                            pass
+                    tweet.id = id
+                    tweet.permalink = 'https://twitter.com' + permalink
+                    tweet.username = usernameTweet
 
-                tweet.text = text
-                tweet.date = datetime.datetime.fromtimestamp(dateSec)
-                tweet.formatted_date = datetime.datetime.fromtimestamp(dateSec).strftime("%a %b %d %X +0000 %Y")
-                tweet.retweets = retweets
-                tweet.favorites = favorites
-                tweet.mentions = " ".join(re.compile('(@\\w*)').findall(tweet.text))
-                tweet.hashtags = " ".join(re.compile('(#\\w*)').findall(tweet.text))
-                tweet.geo = geo
-                tweet.emojis = " ".join(emojis)
-                tweet.urls = ",".join(urls)
-                tweet.author_id = user_id
+                    tweet.text = text
+                    tweet.date = datetime.datetime.fromtimestamp(dateSec)
+                    tweet.formatted_date = datetime.datetime.fromtimestamp(dateSec).strftime("%a %b %d %X +0000 %Y")
+                    tweet.retweets = retweets
+                    tweet.favorites = favorites
+                    tweet.mentions = " ".join(re.compile('(@\\w*)').findall(tweet.text))
+                    tweet.hashtags = " ".join(re.compile('(#\\w*)').findall(tweet.text))
+                    tweet.geo = geo
+                    tweet.emojis = " ".join(emojis)
+                    tweet.urls = ",".join(urls)
+                    tweet.author_id = user_id
 
-                results.append(tweet)
-                resultsAux.append(tweet)
+                    results.append(tweet)
+                    resultsAux.append(tweet)
 
-                if receiveBuffer and len(resultsAux) >= bufferLength:
-                    receiveBuffer(resultsAux)
-                    resultsAux = []
+                    if receiveBuffer and len(resultsAux) >= bufferLength:
+                        receiveBuffer(resultsAux)
+                        resultsAux = []
 
-                if tweetCriteria.maxTweets > 0 and len(results) >= tweetCriteria.maxTweets:
-                    active = False
+                    if tweetCriteria.maxTweets > 0 and len(results) >= tweetCriteria.maxTweets:
+                        active = False
+                        break
+                except:
                     break
 
 
@@ -166,11 +172,12 @@ class TweetManager:
         try:
             response = opener.open(url)
             jsonResponse = response.read()
+            dataJson = json.loads(jsonResponse.decode())
         except:
             print("Twitter weird response. Try to see on browser: https://twitter.com/search?q=%s&src=typd" % urllib.parse.quote(urlGetData))
             print("Unexpected error:", sys.exc_info()[0])
-            pass
+            return 'errorJSON'
 
-        dataJson = json.loads(jsonResponse.decode())
+        
 
         return dataJson
