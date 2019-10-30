@@ -6,6 +6,12 @@ import time
 # Stop all: sudo pkill python
 # Check workers: ps -fC python3 |wc -l
 
+# Merge all CSVs in one file: cat * > football.csv 
+# Remove headers: awk '!/"username","date","retweets","favorites","text","geo","mentions","hashtags","id","permalink","emoji"/' football.csv > temp && mv temp football_clean.csv
+# 💔Add header: sed -i '1 i\"username","date","retweets","favorites","text","geo","mentions","hashtags","id","permalink","emoji"' football_clean.csv
+
+# Start webserver python -m SimpleHTTPServer 8000
+
 MAX_LOAD_AVG = 4
 start_date = datetime.datetime(2010,1,1)
 days_number = 3500
@@ -64,7 +70,8 @@ for emoji in emojis:
         lavg = psutil.getloadavg()[0]
         while lavg > MAX_LOAD_AVG:
             print('waiting for workers...')
-            time.sleep(60)
+            time.sleep(1)
+            lavg = psutil.getloadavg()[0]
             
 
 
@@ -78,4 +85,4 @@ for emoji in emojis:
         ))
 
         print("{} worker {} created".format(emoji[1], i))
-        time.sleep(1)
+        time.sleep(0.5)
