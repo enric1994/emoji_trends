@@ -1,32 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>test</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Excel Pull Test</title>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+        google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
+        google.setOnLoadCallback(drawSheetName);
+
+        function drawSheetName() {
+            var queryString = encodeURIComponent('SELECT A, B');
+
+            var query = new google.visualization.Query(
+                'https://docs.google.com/spreadsheets/d/1eX0yf4YNc3AnLXBEQKouGyJYdiwUHdLujXoh_z41bQE/edit#gid=1576412811&headers=1&tq=' + queryString);
+            query.send(handleSampleDataQueryResponse);
+        }
+
+        function handleSampleDataQueryResponse(response) {
+            if (response.isError()) {
+                alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+                return;
+            }
+
+            var data = response.getDataTable();
+            var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
+            chart.draw(data, { height: 400 });
+        }
+    </script>
 </head>
-<style>
-    .container {
-        width: 50%;
-        height: 50%;
-    }
-</style>
+
 <body>
-
-    <div class="container">
-        <canvas id="myChart"></canvas>
-    </div>
-
+    <div id="columnchart"></div>
 </body>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
-<script src="https://d3js.org/d3-dsv.v1.min.js"></script>
-<script src="https://d3js.org/d3-fetch.v1.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="./mychart.js"></script>
-
 </html>
-
-     
