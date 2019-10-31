@@ -1,39 +1,46 @@
-<!DOCTYPE html>
-<html>
+<link href="https://fonts.googleapis.com/css?family=Merriweather|Roboto" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Excel Pull Test</title>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
 
-        google.load('visualization', '1.0', { 'packages': ['corechart'] });
 
-        google.setOnLoadCallback(drawSheetName);
 
-        function drawSheetName() {
-            var queryString = encodeURIComponent('SELECT A, B');
+<div id="wrapper">
+    <canvas id="chart"></canvas>
+</div>
+<script>
+    var mydata;
+    function makeChart(dates) {
+        
 
-            var query = new google.visualization.Query(
-                'https://docs.google.com/spreadsheets/d/1eX0yf4YNc3AnLXBEQKouGyJYdiwUHdLujXoh_z41bQE/edit#gid=1576412811&headers=1&tq=' + queryString);
-            query.send(handleSampleDataQueryResponse);
-        }
+        var day = dates.map(function (d) {
+            return d.day;
+        });
+        var usage = dates.map(function (d) {
+            return d.usage;
+        });
 
-        function handleSampleDataQueryResponse(response) {
-            if (response.isError()) {
-                alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-                return;
+        var chart = new Chart('chart', {
+            type: "line",
+            options: {
+                maintainAspectRatio: true,
+                legend: {
+                    display: false
+                }
+            },
+            data: {
+                labels: day,
+                datasets: [
+                    {
+                        label: 'Emojis per day',
+                        data: usage
+                    }
+                ]
             }
+        });
+    }
 
-            var data = response.getDataTable();
-            var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
-            chart.draw(data, { height: 400 });
-        }
-    </script>
-</head>
-
-<body>
-    <div id="columnchart"></div>
-</body>
-
-</html>
+    d3
+        .csv("output/football.csv")
+        .then(makeChart);
+</script>
