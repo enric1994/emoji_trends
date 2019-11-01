@@ -1,0 +1,101 @@
+<!-- <link href="https://fonts.googleapis.com/css?family=Merriweather|Roboto" rel="stylesheet">
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@0.7.4"></script> -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script src="https://npmcdn.com/chart.js@latest/dist/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.6.3/chartjs-plugin-zoom.js"></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1.1.2"></script>
+
+
+
+
+<div id="wrapper">
+    <canvas id="chart"></canvas>
+</div>
+<script>
+    function makeChart(dates) {
+        
+
+        var day = dates.map(function (d) {
+            return d.day;
+        });
+        var usage = dates.map(function (d) {
+            return d.usage;
+        });
+
+        var chart = new Chart('chart', {
+            type: "line",
+            data: {
+                labels: day,
+                datasets: [
+                    {
+                        label: 'Emojis per day',
+                        data: usage,
+                        // pointRadius: 0,
+                        borderColor: 'red',
+                        borderWidth: 5,
+                        fill: false,
+                        borderCapStyle: 'round'
+                    }
+                ]
+            },
+            options: {
+                // title: { display: false},
+                // tooltips: {enabled: false},
+                legend: {display: false},
+                scales:{
+                    // xAxes: [{ display: false }],
+                    yAxes: [{ display: false }]
+                },
+                responsive: true,
+                pan: {
+                    enabled: true,
+                    mode: "x",
+                    speed: 10,
+                    threshold: 10
+                    },
+                    zoom: {
+                    enabled: true,
+                    drag: false,
+                    mode: "x",
+                    sensitivity: 0.001,
+                    limits: {
+                        // max: 10,
+                        min: 20000
+                    }
+                }
+
+
+
+                // showLines: false,
+                // pointRadius: 0,
+                // steppedLine: true,
+        //         elements: {
+        //     line: {
+        //         cubicInterpolationMode: 'default' // disables bezier curves
+        //     }
+        // },
+                
+            },
+        });
+    }
+
+    d3
+        .csv("output/football.csv")
+        .then(makeChart);
+</script>
