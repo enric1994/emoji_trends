@@ -6,38 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
-
 </head>
 
 <body>
 
     <div>
-        <div></div>
-        <div><span>Hi</span></div>
+
         <div>
             <canvas id="football" width="80%" height="30%"></canvas>
         </div>
         <div>
-            <canvas id="football2" width="80%" height="30%"></canvas>
-        </div>
-        <div>
-            <canvas id="football3" width="80%" height="30%"></canvas>
-        </div>
-        <div>
-            <canvas id="football4" width="80%" height="30%"></canvas>
+            <canvas id="bee" width="80%" height="30%"></canvas>
         </div>
 
     </div>
 
     <script>
-        function makeChart(dates) {
+        var mydata;
+        function makeChart(dates, title, emoji) {
             var myconfig = [{ deferred: { xOffset: '50%', delay: 1250, } }];
-            // var myoptions = [{
-          
-            // }];
             var day = dates.map(function (d) {
                 return d.day;
             });
@@ -46,39 +35,52 @@
             });
 
 
-            var football = document.getElementById("football");
-            var options = { plugins: [{ deferred: { yOffset: 500, delay: 1200, } }],
-        //     downsample: {
-        //     enabled: true,
-        //     threshold: 30 // max number of points to display per dataset
-        // },
-                responsive: true,
-                tooltip: false,
-                legend: false,
-                animation: {
-                    duration: 4000
-                },
-                tooltips:{
-                    intersect: false
-                },
-                scales:{
-                    // xAxes: [{ display: false }],
-                    yAxes: [{ display: false }],
-                    xAxes: [{
-                        type: 'time',
-                        time: {
-                    unit: 'year'
-                
-                },
-                        gridLines : {
-                display : false
-            }
-        }]
-                },
-             };
+
+            Chart.defaults.global.plugins = [{ deferred: { yOffset: 500, delay: 1200, } }];
+            Chart.defaults.global.responsive = true;
+            Chart.defaults.global.legend = false;
+            Chart.defaults.global.animation.duration = 4000;
+            Chart.defaults.global.tooltips.intersect = false;
+            Chart.defaults.global.tooltips.borderWidth = 3;
+            Chart.defaults.global.tooltips.borderColor = 'black';
+            Chart.defaults.global.tooltips.yAlign = 'bottom';
+            Chart.defaults.global.tooltips.backgroundColor = 'white';
+            Chart.defaults.global.tooltips.titleFontSize = 16;
+            Chart.defaults.global.tooltips.titleFontColor = 'black';
+            Chart.defaults.global.tooltips.bodyFontColor = '#000';
+            Chart.defaults.global.tooltips.bodyFontSize = 14;
+            Chart.defaults.global.tooltips.displayColors = false;
+            // Chart.defaults.scales=[{yAxes: { display: false }}];
+            // Chart.defaults.global.scale={xAxes:[{
+            //             type: 'time',
+            //             time: {
+            //                 unit: 'year'
+            //             },
+            //             gridLines: {
+            //                 display: false
+            //             }
+            //         }]};
+
+            //     },
+            //     gridLines: {
+            //         display: false
+            //     }
+            // }]
+            //     },
+            // };
+
+            var football = document.getElementById(title);
             new Chart(football.getContext("2d"), {
                 type: ['line'],
-                options: options,
+                options: {
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                return Number(tooltipItem.yLabel) + " people tweeted " + emoji;
+                            }
+                        }
+                    }
+                },
                 data: {
                     labels: day,
                     datasets: [{
@@ -90,49 +92,15 @@
                     }]
                 }
             });
-
-            var football2 = document.getElementById("football2");
-            new Chart(football2.getContext("2d"), {
-                type: ['line'],
-                options: options,
-                data: {
-                    labels: day,
-                    datasets: [{
-                        backgroundColor: 'blue',
-                        data: usage
-                    }]
-                }
-            });
-
-            var football3 = document.getElementById("football3");
-            new Chart(football3.getContext("2d"), {
-                type: ['line'],
-                options: options,
-                data: {
-                    labels: day,
-                    datasets: [{
-                        backgroundColor: 'green',
-                        data: usage
-                    }]
-                }
-            });
-
-            var football4 = document.getElementById("football4");
-            new Chart(football4.getContext("2d"), {
-                type: ['line'],
-                options: options,
-                data: {
-                    labels: day,
-                    datasets: [{
-                        backgroundColor: 'yellow',
-                        data: usage
-                    }]
-                }
-            });
         }
-        d3
-            .csv("output/football_sampled.csv")
-            .then(makeChart);
+
+        Promise.all([
+            d3.csv("output/football_sampled.csv"),
+            d3.csv("output/bee.csv"),
+        ]).then(function (files) {
+            makeChart(files[0], 'football', '⚽');
+            makeChart(files[1], 'bee', '🐝');
+        })
 
 
     </script>
