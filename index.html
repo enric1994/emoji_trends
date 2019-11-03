@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -25,7 +26,7 @@
 
     <script>
         var mydata;
-        function makeChart(dates, title, emoji) {
+        function makeChart(dates, emoji_name, emoji, color1) {
             var myconfig = [{ deferred: { xOffset: '50%', delay: 1250, } }];
             var day = dates.map(function (d) {
                 return d.day;
@@ -50,33 +51,42 @@
             Chart.defaults.global.tooltips.bodyFontColor = '#000';
             Chart.defaults.global.tooltips.bodyFontSize = 14;
             Chart.defaults.global.tooltips.displayColors = false;
-            // Chart.defaults.scales=[{yAxes: { display: false }}];
-            // Chart.defaults.global.scale={xAxes:[{
-            //             type: 'time',
-            //             time: {
-            //                 unit: 'year'
-            //             },
-            //             gridLines: {
-            //                 display: false
-            //             }
-            //         }]};
+            Chart.defaults.global.defaultFontFamily = 'Fredoka One';
 
-            //     },
-            //     gridLines: {
-            //         display: false
-            //     }
-            // }]
-            //     },
-            // };
 
-            var football = document.getElementById(title);
+            scale_options = {
+
+                yAxes: [{ display: false }],
+                xAxes: [{
+                    type: 'time',
+                    time: {
+                        unit: 'year'
+                    },
+                    ticks: {
+                        fontColor: 'black',
+                        fontSize: 18,
+                    },
+                    gridLines: {
+                        display: false
+                    },
+                }],
+
+            };
+
+            var football = document.getElementById(emoji_name);
             new Chart(football.getContext("2d"), {
                 type: ['line'],
                 options: {
+                    scales: scale_options,
                     tooltips: {
+                        titleFontSize: 14,
+                        titleFontStyle: 'normal',
                         callbacks: {
-                            label: function (tooltipItem, data) {
-                                return Number(tooltipItem.yLabel) + " people tweeted " + emoji;
+                            title: function (tooltipItem) {
+                                return "On  " + tooltipItem[0].xLabel;
+                            },
+                            label: function (tooltipItem) {
+                                return Number(tooltipItem.yLabel).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji;
                             }
                         }
                     }
@@ -84,10 +94,10 @@
                 data: {
                     labels: day,
                     datasets: [{
-                        backgroundColor: 'red',
+                        backgroundColor: color1,
                         data: usage,
                         pointRadius: 0,
-                        borderWidth: 3,
+                        borderWidth: 4,
                         borderColor: 'black',
                     }]
                 }
@@ -96,10 +106,10 @@
 
         Promise.all([
             d3.csv("output/football_sampled.csv"),
-            d3.csv("output/bee.csv"),
+            d3.csv("output/bee_sampled.csv"),
         ]).then(function (files) {
-            makeChart(files[0], 'football', '⚽');
-            makeChart(files[1], 'bee', '🐝');
+            makeChart(files[0], 'football', '⚽', '#bc444c');
+            makeChart(files[1], 'bee', '🐝', '#fbf492');
         })
 
 
