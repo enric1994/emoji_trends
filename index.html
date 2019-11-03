@@ -9,17 +9,31 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+
 </head>
 
 <body>
 
     <div>
 
-        <div>
+        <div class="chart">
             <canvas id="football" width="80%" height="30%"></canvas>
         </div>
-        <div>
+        <div class="chart">
             <canvas id="bee" width="80%" height="30%"></canvas>
+        </div>
+        <div class="chart">
+            <canvas id="bee2" width="80%" height="30%"></canvas>
+        </div>
+        <div class="chart">
+            <canvas id="bee3" width="80%" height="30%"></canvas>
+        </div>
+        <div class="chart">
+            <canvas id="bee4" width="80%" height="30%"></canvas>
+        </div>
+        <div class="chart">
+            <canvas id="bee5" width="80%" height="30%"></canvas>
         </div>
 
     </div>
@@ -108,8 +122,12 @@
             d3.csv("output/football_sampled.csv"),
             d3.csv("output/bee_sampled.csv"),
         ]).then(function (files) {
-            makeChart(files[0], 'football', '⚽', '#bc444c');
-            makeChart(files[1], 'bee', '🐝', '#fbf492');
+            makeChart(files[0], 'football', '⚽', '#00188f');
+            makeChart(files[1], 'bee', '🐝', '#fff100');
+            makeChart(files[1], 'bee2', '🐝', '#009e49');
+            makeChart(files[1], 'bee3', '🐝', '#00bcf2');
+            makeChart(files[1], 'bee4', '🐝', '#e81123');
+            makeChart(files[1], 'bee5', '🐝', '#68217a');
         })
 
 
