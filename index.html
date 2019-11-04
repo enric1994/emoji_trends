@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/roughjs@3.1.0/dist/rough.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-rough@0.2.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
@@ -65,7 +67,6 @@
     <script>
         var mydata;
         function makeChart(dates, emoji_name, emoji, color1) {
-            var myconfig = [{ deferred: { xOffset: '50%', delay: 1250, } }];
             var day = dates.map(function (d) {
                 return d.day;
             });
@@ -73,11 +74,8 @@
                 return d.usage;
             });
 
-
-
-            Chart.defaults.global.plugins = [{ deferred: { yOffset: 500, delay: 1200, } }];
             Chart.defaults.global.legend = false;
-            Chart.defaults.global.animation.duration = 4000;
+            Chart.defaults.global.animation.duration = 700;
             Chart.defaults.global.tooltips.intersect = false;
             Chart.defaults.global.tooltips.borderWidth = 3;
             Chart.defaults.global.tooltips.borderColor = 'black';
@@ -88,7 +86,7 @@
             Chart.defaults.global.tooltips.bodyFontColor = '#000';
             Chart.defaults.global.tooltips.bodyFontSize = 14;
             Chart.defaults.global.tooltips.displayColors = false;
-            Chart.defaults.global.defaultFontFamily = 'Fredoka One';
+            Chart.defaults.global.defaultFontFamily = '"Fredoka One", cursive';
             Chart.defaults.global.maintainAspectRatio = false;
             Chart.defaults.global.responsive = true;
 
@@ -113,6 +111,10 @@
 
             var football = document.getElementById(emoji_name);
             new Chart(football.getContext("2d"), {
+                plugins: [
+                    ChartRough,
+                    { deferred: { yOffset: 1, delay: 3200, } }
+                ],
                 type: ['line'],
                 options: {
                     layout: {
@@ -143,8 +145,19 @@
                         backgroundColor: color1,
                         data: usage,
                         pointRadius: 0,
-                        borderWidth: 0.01,
+                        pointBackgroundColor: color1,
+                        pointBorderColor: color1,
                         borderColor: 'black',
+                        rough: {
+                            roughness: 1.5,
+                            bowing: 0,
+                            fillStyle: 'hachure',
+                            fillWeight: 4,
+                            hachureAngle: -41,
+                            hachureGap: 6,
+                            // curveStepCount: 70,
+                            simplification: 0
+                        }
                     }]
                 }
             });
