@@ -6,3 +6,40 @@
     border-style: solid;
     margin: 10px 0 10px 0;
 }
+
+body {
+    background-color: #fc3153;
+    text-align: center;
+  }
+
+h1 {
+    margin-bottom: 10vw;
+    font-size: 13vw;
+    /* font-size: 144pt; */
+    font-family: 'Luckiest Guy';
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow:   0px -0.5vw 0 #212121,  
+                   0px -0.5vw 0 #212121,
+                   0px  0.5vw 0 #212121,
+                   0px  0.5vw 0 #212121,
+                  -0.5vw  0px 0 #212121,  
+                  0.5vw  0px 0 #212121,
+                  -0.5vw  0px 0 #212121,
+                  0.5vw  0px 0 #212121,
+                  -0.5vw -0.5vw 0 #212121,  
+                  0.5vw -0.5vw 0 #212121,
+                  -0.5vw  0.5vw 0 #212121,
+                  0.5vw  0.5vw 0 #212121,
+                  -0.5vw  2vw 0 #212121,
+                   0px  2vw 0 #212121,
+                   0.5vw  2vw 0 #212121,
+                   0 2vw 1px rgba(0,0,0,.1),
+                   0 0 0.5vw rgba(0,0,0,.1),
+                   0 0.5vw 3px rgba(0,0,0,.3),
+                   0 2vw 6px rgba(0,0,0,.2),
+                   0 2vw 2vw rgba(0,0,0,.25),
+                   0 3vw 3vw rgba(0,0,0,.2),
+                   0 4vw 4vw rgba(0,0,0,.15);
+  }
