@@ -69,7 +69,8 @@
 
 
     <script>
-        var annotations {};
+        var annotations = {};
+        annotations["football"] = ["2014-06-12", "Brazil World Cup 2014 started"];
         function makeChart(dates, emoji_name, emoji, color1) {
             var day = dates.map(function (d) {
                 return d.day;
@@ -125,7 +126,7 @@
                         padding: {
                             left: 0,
                             right: 0,
-                            top: 40,
+                            top: 50,
                             bottom: 0
                         }
                     },
@@ -134,14 +135,27 @@
                         caretPadding: 10,
                         caretSize: 7,
                         cornerRadius: 15,
-                        titleFontSize: 16,
-                        titleFontStyle: 'normal',
+                        titleFontSize: 18,
+                        titleFontStyle: 'bold',
+                        titleFontColor: '#262626',
+                        titleSpacing: 8,
+                        bodyFontStyle: 'italic',
+                        bodySpacing: 6,
                         callbacks: {
                             title: function (tooltipItem) {
-                                return "On  " + tooltipItem[0].xLabel;
+                                return "On  " + tooltipItem[0].xLabel + ":";
                             },
-                            label: function (tooltipItem, data) {
-                                return "description here"
+                            label: function (tooltipItem) {
+                                console.log(tooltipItem.xLabel);
+                                console.log(emoji_name);
+                                if (emoji_name in annotations) {
+                                    if (annotations[emoji_name][0] == tooltipItem.xLabel) {
+                                        return annotations[emoji_name][1];
+                                    }
+                                } else {
+                                    return " "
+                                }
+
                             },
                             afterLabel: function (tooltipItem) {
                                 return Number(tooltipItem.yLabel).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji;
