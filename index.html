@@ -69,7 +69,7 @@
 
 
     <script>
-        var mydata;
+        var annotations {};
         function makeChart(dates, emoji_name, emoji, color1) {
             var day = dates.map(function (d) {
                 return d.day;
@@ -125,19 +125,25 @@
                         padding: {
                             left: 0,
                             right: 0,
-                            top: 30,
+                            top: 40,
                             bottom: 0
                         }
                     },
                     scales: scale_options,
                     tooltips: {
-                        titleFontSize: 14,
+                        caretPadding: 10,
+                        caretSize: 7,
+                        cornerRadius: 15,
+                        titleFontSize: 16,
                         titleFontStyle: 'normal',
                         callbacks: {
                             title: function (tooltipItem) {
                                 return "On  " + tooltipItem[0].xLabel;
                             },
-                            label: function (tooltipItem) {
+                            label: function (tooltipItem, data) {
+                                return "description here"
+                            },
+                            afterLabel: function (tooltipItem) {
                                 return Number(tooltipItem.yLabel).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji;
                             }
                         }
@@ -148,7 +154,12 @@
                     datasets: [{
                         backgroundColor: color1,
                         data: usage,
-                        pointRadius: 0,
+                        pointRadius: 1,
+                        pointHoverRadius: 6,
+                        hoverBackgroundColor: 'black',
+                        pointHoverBorderColor: 'black',
+                        pointHitRadius: 40,
+                        pointHoverBorderWidth: 6,
                         pointBackgroundColor: color1,
                         pointBorderColor: color1,
                         borderColor: 'black',
