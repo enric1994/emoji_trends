@@ -1,7 +1,8 @@
-.chart{
-    border: 5px;
-    color: black;
-    border-style: solid;
-    margin: 3%;
+#box{
     border-radius: 25px;
+    background: white;
+    border-width: 5px;
+    border-color: black;
+    border-style: solid;
+    margin: 10px 0 10px 0;
 }

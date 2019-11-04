@@ -10,33 +10,57 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
 
-    <div>
 
-        <div class="chart">
-            <canvas id="football" width="80%" height="30%"></canvas>
-        </div>
-        <div class="chart">
-            <canvas id="bee" width="80%" height="30%"></canvas>
-        </div>
-        <div class="chart">
-            <canvas id="bee2" width="80%" height="30%"></canvas>
-        </div>
-        <div class="chart">
-            <canvas id="bee3" width="80%" height="30%"></canvas>
-        </div>
-        <div class="chart">
-            <canvas id="bee4" width="80%" height="30%"></canvas>
-        </div>
-        <div class="chart">
-            <canvas id="bee5" width="80%" height="30%"></canvas>
-        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body" id="box">
+                        <canvas id="football" style="min-height:350px"></canvas>
 
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body" id="box">
+                        <canvas id="bee" style="min-height:350px"></canvas>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body" id="box">
+                        <canvas id="bee2" style="min-height:350px"></canvas>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body" id="box">
+                        <canvas id="bee3" style="min-height:350px"></canvas>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body" id="box">
+                        <canvas id="bee4" style="min-height:350px"></canvas>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="bee5" style="min-height:350px"></canvas>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 
     <script>
         var mydata;
@@ -52,7 +76,6 @@
 
 
             Chart.defaults.global.plugins = [{ deferred: { yOffset: 500, delay: 1200, } }];
-            Chart.defaults.global.responsive = true;
             Chart.defaults.global.legend = false;
             Chart.defaults.global.animation.duration = 4000;
             Chart.defaults.global.tooltips.intersect = false;
@@ -66,7 +89,8 @@
             Chart.defaults.global.tooltips.bodyFontSize = 14;
             Chart.defaults.global.tooltips.displayColors = false;
             Chart.defaults.global.defaultFontFamily = 'Fredoka One';
-
+            Chart.defaults.global.maintainAspectRatio = false;
+            Chart.defaults.global.responsive = true;
 
             scale_options = {
 
@@ -91,6 +115,14 @@
             new Chart(football.getContext("2d"), {
                 type: ['line'],
                 options: {
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 30,
+                            bottom: 0
+                        }
+                    },
                     scales: scale_options,
                     tooltips: {
                         titleFontSize: 14,
@@ -111,7 +143,7 @@
                         backgroundColor: color1,
                         data: usage,
                         pointRadius: 0,
-                        borderWidth: 4,
+                        borderWidth: 0.01,
                         borderColor: 'black',
                     }]
                 }
@@ -119,8 +151,8 @@
         }
 
         Promise.all([
-            d3.csv("output/football_sampled.csv"),
-            d3.csv("output/bee_sampled.csv"),
+            d3.csv("output/football2.csv"),
+            d3.csv("output/bee2.csv"),
         ]).then(function (files) {
             makeChart(files[0], 'football', '⚽', '#00188f');
             makeChart(files[1], 'bee', '🐝', '#fff100');

@@ -21,3 +21,4 @@ def downsample(source_path, output_path, factor):
                 csvf2.writerow([dates[sampled[i][0]], row[1]])
 
 
+# downsample('output/football.csv', 'output/football2.csv', 50)
