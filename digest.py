@@ -1,9 +1,11 @@
 import csv
 import datetime
 import os
+from downsample import downsample
 
-start_date = datetime.datetime(2010,1,1)
+start_date = datetime.datetime(2013,1,1)
 days_number = 3500
+downsample_factor = 50
 date_array = [start_date + datetime.timedelta(days=x) for x in range(days_number)]
 
 def clean(folder_name):
@@ -31,13 +33,16 @@ def clean(folder_name):
                 pass
 
             line_count +=1
-
+    print('Deleting intermediate files...')
+    os.system('rm postprocessing/{}_no_header.csv'.format(folder_name))
+    os.system('rm postprocessing/{}_clean.csv'.format(folder_name))
     print("Writing CSV...")
     with open('output/{}.csv'.format(folder_name), mode='w') as f:
         writer = csv.writer(f, delimiter=',')
         writer.writerow(['day,usage'])
         for date in date_array:
             writer.writerow([date.strftime("%Y-%m-%d"), date_dict[date]])
+    
+    downsample('output/{}.csv'.format(folder_name), 'clean_data/{}.csv'.format(folder_name), downsample_factor)
 
-
-# clean('bee')
+# clean('football')
