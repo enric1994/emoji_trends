@@ -1,17 +1,30 @@
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    display:inline-block;
+    font-size: 5vw;
+    margin: 0 0 19vw 0;
+}
+
 #box{
     border-radius: 25px;
     background: white;
     border-width: 5px;
     border-color: black;
     border-style: solid;
-    margin: 10px 0 10px 0;
+    margin: 1vw 0 8vw 0;
 }
 
 .category{
-    text-align: left;
-    font-size: 50px;
-    margin-top: 3vw;
+    text-align: center;
+    font-size: 5vh;
+    /* margin-top: 3vw; */
     font-family: 'Fredoka One';
+    margin: 0 6vw 0 6vw;
 }
 body {
     background-color: #2098e9 !important;
@@ -19,17 +32,17 @@ body {
   }
 
 h2{
-    font-size: 2.5vw;
+    font-size: 4vh;
     font-family: 'Fredoka One';
     color: black;
     font-weight: normal;
 }
 
 h3{
-    font-size: 1.5vw;
+    font-size: 3vh;
     font-family: 'Fredoka One';
     color: white;
-    margin-bottom: 10vw;
+    /* margin-bottom: 10vw; */
     font-weight: normal;
 }
 

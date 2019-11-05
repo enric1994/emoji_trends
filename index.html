@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/whatsapp/224/smiling-face-with-sunglasses_1f60e.png" />
+    <title>Emoji Trends</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/roughjs@3.1.0/dist/rough.js"></script>
@@ -24,6 +26,10 @@
     <h1>EMOJI TRENDS</h1>
     <h2>How emojis are used in Twitter</h2>
     <h3><a href="https://enricmor.eu">-by Enric Moreu-</a></h3>
+    <button type="button" onclick="smoothScroll(document.getElementById('football'))">⚽</button>
+    <button type="button" onclick="smoothScroll(document.getElementById('bee'))">🐝</button>
+    <button type="button" onclick="smoothScroll(document.getElementById('bee2'))">🐮</button>
+    <button type="button" onclick="smoothScroll(document.getElementById('bee3'))">🐸</button>
 
     <div class="container">
         <div class="row">
@@ -31,44 +37,57 @@
                 <div class="card category">
                     Soccer Ball⚽
                     <div class="card-body" id="box">
-                        <canvas id="football" style="min-height:350px"></canvas>
-
+                        <canvas id="football" style="min-height: 50vh"></canvas>
                     </div>
                 </div>
                 <div class="card category">
-                    Bee 🐝
+                    Bee🐝
                     <div class="card-body" id="box">
-                        <canvas id="bee" style="min-height:350px"></canvas>
-
+                        <canvas id="bee" style="min-height: 50vh"></canvas>
                     </div>
                 </div>
                 <div class="card category">
+                    Cow🐮
                     <div class="card-body" id="box">
-                        <canvas id="bee2" style="min-height:350px"></canvas>
-
+                        <canvas id="bee2" style="min-height: 50vh"></canvas>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card category">
+                    Frog🐸
                     <div class="card-body" id="box">
-                        <canvas id="bee3" style="min-height:350px"></canvas>
-
+                        <canvas id="bee3" style="min-height: 50vh"></canvas>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-body" id="box">
-                        <canvas id="bee4" style="min-height:350px"></canvas>
 
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body" id="box">
-                        <canvas id="bee5" style="min-height:350px"></canvas>
-
-                    </div>
-                </div>
             </div>
         </div>
     </div>
+    </div>
+
+    <script>
+        window.smoothScroll = function (target) {
+            var scrollContainer = target;
+            do { //find scroll container
+                scrollContainer = scrollContainer.parentNode;
+                if (!scrollContainer) return;
+                scrollContainer.scrollTop += 1;
+            } while (scrollContainer.scrollTop == 0);
+
+            var targetY = 0;
+            do { //find the top of target relatively to the container
+                if (target == scrollContainer) break;
+                targetY += target.offsetTop;
+            } while (target = target.offsetParent);
+
+            scroll = function (c, a, b, i) {
+                i++; if (i > 26) return;
+                c.scrollTop = a + (b - a) / 30 * i;
+                setTimeout(function () { scroll(c, a, b, i); }, 20);
+            }
+            // start scrolling
+            scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+        }
+    </script>
 
 
     <script>
@@ -152,8 +171,6 @@
                                 return multistringText;
                             },
                             label: function (tooltipItem) {
-                                console.log(tooltipItem.xLabel);
-                                console.log(emoji_name);
                                 if (emoji_name in annotations) {
                                     if (annotations[emoji_name][0] == tooltipItem.xLabel) {
                                         return annotations[emoji_name][1];
@@ -201,10 +218,8 @@
         ]).then(function (files) {
             makeChart(files[0], 'football', '⚽', '#00188f');
             makeChart(files[1], 'bee', '🐝', '#fff100');
-            makeChart(files[1], 'bee2', '🍉', '#009e49');
-            makeChart(files[1], 'bee3', '🦊', '#00bcf2');
-            makeChart(files[1], 'bee4', '🐝', '#e81123');
-            makeChart(files[1], 'bee5', '🐝', '#68217a');
+            makeChart(files[0], 'bee2', '🐮', '#f40e0e');
+            makeChart(files[1], 'bee3', '🐸', '#009e49');
         })
 
 
