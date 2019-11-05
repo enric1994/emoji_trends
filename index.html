@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/whatsapp/224/smiling-face-with-sunglasses_1f60e.png" />
+    <link rel="icon"
+        href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/whatsapp/224/smiling-face-with-sunglasses_1f60e.png" />
     <title>Emoji Trends by Enric Moreu</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
@@ -91,6 +92,9 @@
 
 
     <script>
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
         var annotations = {};
         annotations["football"] = ["2014-06-12", "Brazil World Cup 2014 started"];
         function makeChart(dates, emoji_name, emoji, color1) {
@@ -166,7 +170,11 @@
                         bodySpacing: 6,
                         callbacks: {
                             title: function (tooltipItem) {
-                                var multistringText = [tooltipItem[0].xLabel];
+                                var date = new Date(tooltipItem[0].xLabel);
+                                year = date.getFullYear();
+                                month = monthNames[date.getMonth()];
+                                day = date.getDay();
+                                var multistringText = [month + " " + day + ", " + year];
                                 multistringText.push(Number(tooltipItem[0].yLabel).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji);
                                 return multistringText;
                             },
