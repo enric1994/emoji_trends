@@ -11,15 +11,36 @@
     text-align: left;
     font-size: 50px;
     margin-top: 3vw;
-    font-family: 'Luckiest Guy';
+    font-family: 'Fredoka One';
 }
 body {
-    background-color: #fc3153 !important;
+    background-color: #2098e9 !important;
     text-align: center !important;
   }
 
-h1 {
+h2{
+    font-size: 2.5vw;
+    font-family: 'Fredoka One';
+    color: black;
+    font-weight: normal;
+}
+
+h3{
+    font-size: 1.5vw;
+    font-family: 'Fredoka One';
+    color: white;
     margin-bottom: 10vw;
+    font-weight: normal;
+}
+
+a { 
+    color: inherit;
+    text-decoration: none;
+} 
+
+
+h1 {
+    margin-block-end: 0.067em;
     font-size: 13vw;
     /* font-size: 144pt; */
     font-family: 'Luckiest Guy';
