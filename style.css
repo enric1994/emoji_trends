@@ -7,9 +7,15 @@
     margin: 10px 0 10px 0;
 }
 
+.category{
+    text-align: left;
+    font-size: 50px;
+    margin-top: 3vw;
+    font-family: 'Luckiest Guy';
+}
 body {
-    background-color: #fc3153;
-    text-align: center;
+    background-color: #fc3153 !important;
+    text-align: center !important;
   }
 
 h1 {

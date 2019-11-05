@@ -11,7 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -26,20 +25,22 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <div class="card">
+            <div class="col-12 mt-4">
+                <div class="card category">
+                    Soccer Ball⚽
                     <div class="card-body" id="box">
                         <canvas id="football" style="min-height:350px"></canvas>
 
                     </div>
                 </div>
-                <div class="card">
+                <div class="card category">
+                    Bee 🐝
                     <div class="card-body" id="box">
                         <canvas id="bee" style="min-height:350px"></canvas>
 
                     </div>
                 </div>
-                <div class="card">
+                <div class="card category">
                     <div class="card-body" id="box">
                         <canvas id="bee2" style="min-height:350px"></canvas>
 
@@ -58,7 +59,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" id="box">
                         <canvas id="bee5" style="min-height:350px"></canvas>
 
                     </div>
@@ -126,7 +127,7 @@
                         padding: {
                             left: 0,
                             right: 0,
-                            top: 50,
+                            top: 65,
                             bottom: 0
                         }
                     },
@@ -136,14 +137,17 @@
                         caretSize: 7,
                         cornerRadius: 15,
                         titleFontSize: 18,
-                        titleFontStyle: 'bold',
-                        titleFontColor: '#262626',
+                        titleFontStyle: 'normal',
+                        titleFontColor: 'black',
                         titleSpacing: 8,
-                        bodyFontStyle: 'italic',
+                        bodyFontStyle: 'bold',
+                        bodyFontSize: 20,
                         bodySpacing: 6,
                         callbacks: {
                             title: function (tooltipItem) {
-                                return "On  " + tooltipItem[0].xLabel + ":";
+                                var multistringText = [tooltipItem[0].xLabel];
+                                multistringText.push(Number(tooltipItem[0].yLabel).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji);
+                                return multistringText;
                             },
                             label: function (tooltipItem) {
                                 console.log(tooltipItem.xLabel);
@@ -153,13 +157,10 @@
                                         return annotations[emoji_name][1];
                                     }
                                 } else {
-                                    return " "
+                                    return ""
                                 }
 
                             },
-                            afterLabel: function (tooltipItem) {
-                                return Number(tooltipItem.yLabel).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji;
-                            }
                         }
                     }
                 },
@@ -168,12 +169,12 @@
                     datasets: [{
                         backgroundColor: color1,
                         data: usage,
-                        pointRadius: 1,
+                        pointRadius: 0,
                         pointHoverRadius: 6,
                         hoverBackgroundColor: 'black',
                         pointHoverBorderColor: 'black',
-                        pointHitRadius: 40,
-                        pointHoverBorderWidth: 6,
+                        pointHitRadius: 30,
+                        pointHoverBorderWidth: 3,
                         pointBackgroundColor: color1,
                         pointBorderColor: color1,
                         borderColor: 'black',
@@ -198,8 +199,8 @@
         ]).then(function (files) {
             makeChart(files[0], 'football', '⚽', '#00188f');
             makeChart(files[1], 'bee', '🐝', '#fff100');
-            makeChart(files[1], 'bee2', '🐝', '#009e49');
-            makeChart(files[1], 'bee3', '🐝', '#00bcf2');
+            makeChart(files[1], 'bee2', '🍉', '#009e49');
+            makeChart(files[1], 'bee3', '🦊', '#00bcf2');
             makeChart(files[1], 'bee4', '🐝', '#e81123');
             makeChart(files[1], 'bee5', '🐝', '#68217a');
         })
