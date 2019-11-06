@@ -29,7 +29,7 @@
     <h3><a href="https://enricmor.eu">by Enric Moreu</a></h3>
     <button type="button" onclick="smoothScroll(document.getElementById('football'))">⚽</button>
     <button type="button" onclick="smoothScroll(document.getElementById('bee'))">🐝</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('bee2'))">🐮</button>
+    <button type="button" onclick="smoothScroll(document.getElementById('beer'))">🍺</button>
     <button type="button" onclick="smoothScroll(document.getElementById('bee3'))">🐸</button>
 
     <div class="container">
@@ -48,9 +48,9 @@
                     </div>
                 </div>
                 <div class="card category">
-                    Cow🐮
+                    Beer🍺
                     <div class="card-body" id="box">
-                        <canvas id="bee2" style="min-height: 50vh"></canvas>
+                        <canvas id="beer" style="min-height: 50vh"></canvas>
                     </div>
                 </div>
                 <div class="card category">
@@ -229,10 +229,11 @@
         Promise.all([
             d3.csv("output/football2.csv"),
             d3.csv("output/bee2.csv"),
+            d3.csv("output/beer2.csv"),
         ]).then(function (files) {
             makeChart(files[0], 'football', '⚽', '#00188f');
             makeChart(files[1], 'bee', '🐝', '#fff100');
-            makeChart(files[0], 'bee2', '🐮', '#f40e0e');
+            makeChart(files[2], 'beer', '🍺', '#f40e0e');
             makeChart(files[1], 'bee3', '🐸', '#009e49');
         })
 

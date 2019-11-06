@@ -2,9 +2,10 @@ import csv
 import datetime
 import os
 from downsample import downsample
+from tqdm import tqdm
 
 start_date = datetime.datetime(2013,1,1)
-days_number = 3500
+days_number = 2405
 downsample_factor = 50
 date_array = [start_date + datetime.timedelta(days=x) for x in range(days_number)]
 
@@ -25,7 +26,7 @@ def clean(folder_name):
     with open('postprocessing/{}_no_header.csv'.format(folder_name)) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
-        for row in csv_reader:
+        for row in tqdm(csv_reader):
             try:
                 datetime_object = datetime.datetime.strptime(row[1],'%Y-%m-%d %H:%M').replace(hour=0,minute=0)
                 date_dict[datetime_object] += 1
@@ -45,4 +46,4 @@ def clean(folder_name):
     
     downsample('output/{}.csv'.format(folder_name), 'clean_data/{}.csv'.format(folder_name), downsample_factor)
 
-# clean('football')
+# clean('beer')
