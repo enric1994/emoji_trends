@@ -37,34 +37,35 @@
     <h1>EMOJI TRENDS</h1>
     <h2>How emojis are used on Twitter</h2>
     <h3><a href="https://enricmor.eu">by Enric Moreu</a></h3>
-    <button type="button" onclick="smoothScroll(document.getElementById('soccer_ball'))">⚽</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('bee'))">🐝</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('beer'))">🍺</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('uk'))">🇬🇧</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('american_football'))">🏈</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('spain'))">🇪🇸</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('reminder_ribbon'))">🎗️</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('shooting_star'))">🌠</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('factory'))">🏭</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('pig'))">🐖</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('panda'))">🐼</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('snake'))">🐍</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('santa_claus'))">🎅</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('fuel_pump'))">⛽</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('video_game'))">🎮</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('chart_increasing'))">📈</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('chart_decreasing'))">📉</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('japan'))">🇯🇵</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('south_korea'))">🇰🇷</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('germany'))">🇩🇪</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('china'))">🇨🇳</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('france'))">🇫🇷</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('italy'))">🇮🇹</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('money_with_wings'))">💸</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('rose'))">🌹</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('recycling_symbol'))">♻️</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('broken_heart'))">💔</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('angry_face'))">😠</button>
+    <button type="button" onclick="document.getElementById('soccer_ball').parentElement.parentElement.scrollIntoView();">⚽</button>
+    <button type="button" onclick="document.getElementById('bee').parentElement.parentElement.scrollIntoView();">🐝</button>
+    <button type="button" onclick="document.getElementById('beer').parentElement.parentElement.scrollIntoView();">🍺</button>
+    <button type="button" onclick="document.getElementById('uk').parentElement.parentElement.scrollIntoView();">🇬🇧</button>
+    <button type="button" onclick="document.getElementById('american_football').parentElement.parentElement.scrollIntoView();">🏈</button>
+    <button type="button" onclick="document.getElementById('spain').parentElement.parentElement.scrollIntoView();">🇪🇸</button>
+    <button type="button" onclick="document.getElementById('reminder_ribbon').parentElement.parentElement.scrollIntoView();">🎗️</button>
+    <button type="button" onclick="document.getElementById('shooting_star').parentElement.parentElement.scrollIntoView();">🌠</button>
+    <button type="button" onclick="document.getElementById('factory').parentElement.parentElement.scrollIntoView();">🏭</button>
+    <button type="button" onclick="document.getElementById('pig').parentElement.parentElement.scrollIntoView();">🐖</button>
+    <button type="button" onclick="document.getElementById('panda').parentElement.parentElement.scrollIntoView();">🐼</button>
+    <button type="button" onclick="document.getElementById('snake').parentElement.parentElement.scrollIntoView();">🐍</button>
+    <button type="button" onclick="document.getElementById('santa_claus').parentElement.parentElement.scrollIntoView();">🎅</button>
+    <button type="button" onclick="document.getElementById('fuel_pump').parentElement.parentElement.scrollIntoView();">⛽</button>
+    <button type="button" onclick="document.getElementById('video_game').parentElement.parentElement.scrollIntoView();">🎮</button>
+    <button type="button" onclick="document.getElementById('chart_increasing').parentElement.parentElement.scrollIntoView();">📈</button>
+    <button type="button" onclick="document.getElementById('chart_decreasing').parentElement.parentElement.scrollIntoView();">📉</button>
+    <button type="button" onclick="document.getElementById('japan').parentElement.parentElement.scrollIntoView();">🇯🇵</button>
+    <button type="button" onclick="document.getElementById('south_korea').parentElement.parentElement.scrollIntoView();">🇰🇷</button>
+    <button type="button" onclick="document.getElementById('germany').parentElement.parentElement.scrollIntoView();">🇩🇪</button>
+    <button type="button" onclick="document.getElementById('china').parentElement.parentElement.scrollIntoView();">🇨🇳</button>
+    <button type="button" onclick="document.getElementById('france').parentElement.parentElement.scrollIntoView();">🇫🇷</button>
+    <button type="button" onclick="document.getElementById('italy').parentElement.parentElement.scrollIntoView();">🇮🇹</button>
+    <button type="button" onclick="document.getElementById('money_with_wings').parentElement.parentElement.scrollIntoView();">💸</button>
+    <button type="button" onclick="document.getElementById('rose').parentElement.parentElement.scrollIntoView();">🌹</button>
+    <!-- <button type="button" onclick="document.getElementById('recycling_symbol').parentElement.parentElement.scrollIntoView();">♻️</button> -->
+    <button type="button" onclick="document.getElementById('broken_heart').parentElement.parentElement.scrollIntoView();">💔</button>
+    <button type="button" onclick="document.getElementById('angry_face').parentElement.parentElement.scrollIntoView();">😠</button>
+
 
     <div class="container">
         <div class="row">
@@ -266,12 +267,12 @@
                     </div>
                 </div>
 
-                <div class="card category">
+                <!-- <div class="card category">
                     Recycling Symbol ♻️
                     <div class="card-body" id="box">
                         <canvas id="recycling_symbol" style="min-height: 50vh"></canvas>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="card category">
                     Broken Hearth 💔
@@ -491,7 +492,7 @@
             d3.csv("data/emojis_50/italy.csv"),
             d3.csv("data/emojis_50/money_with_wings.csv"),
             d3.csv("data/emojis_50/rose.csv"),
-            d3.csv("data/emojis_50/recycling_symbol.csv"),
+            // d3.csv("data/emojis_50/recycling_symbol.csv"),
             d3.csv("data/emojis_50/broken_heart.csv"),
             d3.csv("data/emojis_50/angry_face.csv"),
         ]).then(function (files) {
@@ -520,9 +521,9 @@
             makeChart(files[22], 'italy', '🇮🇹', '#f40e0e');
             makeChart(files[23], 'money_with_wings', '💸', '#009e49');
             makeChart(files[24], 'rose', '🌹', '#00188f');
-            makeChart(files[25], 'recycling_symbol', '♻️', '#ff3ad4');
-            makeChart(files[26], 'broken_heart', '💔', '#f40e0e');
-            makeChart(files[27], 'angry_face', '😠', '#009e49');
+            // makeChart(files[25], 'recycling_symbol', '♻️', '#ff3ad4');
+            makeChart(files[25], 'broken_heart', '💔', '#f40e0e');
+            makeChart(files[26], 'angry_face', '😠', '#009e49');
         })
 
 
