@@ -302,13 +302,14 @@
         ];
         var annotations = {};
         annotations["soccer_ball"] = [
-            ["2014-06-12", "Brazil World Cup 2014 started 🇧🇷"]
+            ["2014-06-12", "Brazil World Cup 2014 started 🇧🇷"],
         ];
         annotations["beer"] = [
             ["2014-07-04", "USA Independence Day 🇺🇸"],
             ["2013-07-04", "USA Independence Day 🇺🇸"],
         ];
         function makeChart(dates, emoji_name, emoji, color1) {
+            var pointRadius = [];
             var day = dates.map(function (d) {
                 return d.day;
             });
@@ -352,7 +353,7 @@
             };
 
             var mychart = document.getElementById(emoji_name);
-            new Chart(mychart.getContext("2d"), {
+            var lineChart = new Chart(mychart.getContext("2d"), {
                 plugins: [
                     ChartRough,
                     { deferred: { yOffset: 1, delay: 3200, } }
@@ -388,7 +389,6 @@
                                 var multistringText = [month + " " + day + ", " + year];
                                 multistringText.push(Number(Math.floor(tooltipItem[0].yLabel)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji);
                                 sentiment = (tooltipItem[0].yLabel % 1) * 1000 - 100;
-                                console.log(sentiment)
                                 if (sentiment == -100) {
                                     return multistringText;
                                 } else if (sentiment > 100) {
@@ -419,14 +419,14 @@
                         borderWidth: 2,
                         backgroundColor: color1,
                         data: usage,
-                        pointRadius: 0,
-                        pointHoverRadius: 6,
+                        pointRadius: pointRadius,
+                        pointHoverRadius: 8,
                         hoverBackgroundColor: 'black',
                         pointHoverBorderColor: 'black',
                         pointHitRadius: 30,
                         pointHoverBorderWidth: 3,
-                        pointBackgroundColor: color1,
-                        pointBorderColor: color1,
+                        pointBackgroundColor: 'black',
+                        pointBorderColor: 'black',
                         borderColor: 'black',
                         rough: {
                             roughness: 1.5,
@@ -441,6 +441,19 @@
                     }]
                 }
             });
+
+            if (lineChart.canvas.id in annotations) {
+                for (var i = 0; i < lineChart.data.labels.length; i++) {
+                    pointRadius[i] = 0;
+                    for (var j = 0; j < annotations[lineChart.canvas.id].length; j++) {
+
+                        if (annotations[lineChart.canvas.id][j][0] == lineChart.data.labels[i]) {
+                            pointRadius[i] = 8;
+                        }
+                    }
+                }
+            }
+            lineChart.update();
         }
 
         Promise.all([
