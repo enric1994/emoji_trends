@@ -2,6 +2,16 @@
 <html lang="en-US">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149266625-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149266625-3');
+    </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon"
@@ -183,11 +193,11 @@
                                 var multistringText = [month + " " + day + ", " + year];
                                 multistringText.push(Number(Math.floor(tooltipItem[0].yLabel)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji);
                                 sentiment = tooltipItem[0].yLabel % 1;
-                                if(sentiment == 0){
+                                if (sentiment == 0) {
                                     return multistringText;
-                                } else if(sentiment > 0.5) {
+                                } else if (sentiment > 0.5) {
                                     multistringText.push(parseInt(sentiment * 100) + "% positive tweets😀");
-                                } else if(sentiment <=0.5) {
+                                } else if (sentiment <= 0.5) {
                                     multistringText.push(parseInt(sentiment * 100) + "% negative tweets😡");
                                 }
                                 return multistringText;
