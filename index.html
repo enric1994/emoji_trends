@@ -181,12 +181,14 @@
                                 month = monthNames[date.getMonth()];
                                 day = date.getDate();
                                 var multistringText = [month + " " + day + ", " + year];
-                                multistringText.push(Number(tooltipItem[0].yLabel).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji);
-                                random = Math.random();
-                                if (random > 0.5) {
-                                    multistringText.push(parseInt(random * 100) + "% positive tweets😀");
-                                } else {
-                                    multistringText.push(parseInt(random * 100) + 50 + "% negative tweets😡");
+                                multistringText.push(Number(Math.floor(tooltipItem[0].yLabel)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji);
+                                sentiment = tooltipItem[0].yLabel % 1;
+                                if(sentiment == 0){
+                                    return multistringText;
+                                } else if(sentiment > 0.5) {
+                                    multistringText.push(parseInt(sentiment * 100) + "% positive tweets😀");
+                                } else if(sentiment <=0.5) {
+                                    multistringText.push(parseInt(sentiment * 100) + "% negative tweets😡");
                                 }
                                 return multistringText;
                             },
