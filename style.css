@@ -6,7 +6,7 @@ button {
     overflow: hidden;
     outline:none;
     display:inline-block;
-    font-size: 5vw;
+    font-size: 4.7vw;
     /* margin: 0 0 15vw 0; */
 }
 
@@ -22,7 +22,7 @@ button {
 
 .category{
     text-align: center;
-    font-size: 5vh;
+    font-size: 4.5vh;
     font-family: 'Fredoka One';
     margin: 5vw 4vw 0 4vw;
     color: white;

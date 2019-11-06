@@ -295,32 +295,6 @@
     </div>
 
     <script>
-        window.smoothScroll = function (target) {
-            var scrollContainer = target;
-            do { //find scroll container
-                scrollContainer = scrollContainer.parentNode;
-                if (!scrollContainer) return;
-                scrollContainer.scrollTop += 1;
-            } while (scrollContainer.scrollTop == 0);
-
-            var targetY = 0;
-            do { //find the top of target relatively to the container
-                if (target == scrollContainer) break;
-                targetY += target.offsetTop;
-            } while (target = target.offsetParent);
-
-            scroll = function (c, a, b, i) {
-                i++; if (i > 29.5) return;
-                c.scrollTop = a + (b - a) / 30 * i;
-                setTimeout(function () { scroll(c, a, b, i); }, 20);
-            }
-            // start scrolling
-            scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
-        }
-    </script>
-
-
-    <script>
         const monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
         ];
@@ -375,8 +349,8 @@
 
             };
 
-            var football = document.getElementById(emoji_name);
-            new Chart(football.getContext("2d"), {
+            var mychart = document.getElementById(emoji_name);
+            new Chart(mychart.getContext("2d"), {
                 plugins: [
                     ChartRough,
                     { deferred: { yOffset: 1, delay: 3200, } }
@@ -440,6 +414,7 @@
                 data: {
                     labels: day,
                     datasets: [{
+                        borderWidth: 2,
                         backgroundColor: color1,
                         data: usage,
                         pointRadius: 0,
