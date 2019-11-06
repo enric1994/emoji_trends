@@ -192,13 +192,14 @@
                                 day = date.getDate();
                                 var multistringText = [month + " " + day + ", " + year];
                                 multistringText.push(Number(Math.floor(tooltipItem[0].yLabel)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji);
-                                sentiment = tooltipItem[0].yLabel % 1;
-                                if (sentiment == 0) {
+                                sentiment = (tooltipItem[0].yLabel % 1) * 1000 - 100;
+                                console.log(sentiment)
+                                if (sentiment == -100) {
                                     return multistringText;
-                                } else if (sentiment > 0.5) {
-                                    multistringText.push(parseInt(sentiment * 100) + "% positive tweets😀");
-                                } else if (sentiment <= 0.5) {
-                                    multistringText.push(parseInt(sentiment * 100) + "% negative tweets😡");
+                                } else if (sentiment > 100) {
+                                    multistringText.push(parseInt(sentiment / 10) + "% negative tweets😡");
+                                } else {
+                                    multistringText.push(parseInt(sentiment) + "% positive tweets😀");
                                 }
                                 return multistringText;
                             },
