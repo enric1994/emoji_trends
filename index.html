@@ -97,6 +97,10 @@
         ];
         var annotations = {};
         annotations["football"] = ["2014-06-12", "Brazil World Cup 2014 started 🇧🇷"];
+        annotations["beer"] = [
+            ["2014-07-04", "USA Independence Day 🇺🇸"],
+            ["2013-07-04", "USA Independence Day 🇺🇸"],
+        ];
         function makeChart(dates, emoji_name, emoji, color1) {
             var day = dates.map(function (d) {
                 return d.day;
@@ -173,7 +177,7 @@
                                 var date = new Date(tooltipItem[0].xLabel);
                                 year = date.getFullYear();
                                 month = monthNames[date.getMonth()];
-                                day = date.getDay();
+                                day = date.getDate();
                                 var multistringText = [month + " " + day + ", " + year];
                                 multistringText.push(Number(tooltipItem[0].yLabel).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji);
                                 random = Math.random();
@@ -186,8 +190,10 @@
                             },
                             label: function (tooltipItem) {
                                 if (emoji_name in annotations) {
-                                    if (annotations[emoji_name][0] == tooltipItem.xLabel) {
-                                        return annotations[emoji_name][1];
+                                    for(date in annotations[emoji_name]){
+                                    if (annotations[emoji_name][date][0] == tooltipItem.xLabel) {
+                                        return annotations[emoji_name][date][1];
+                                    }
                                     }
                                 } else {
                                     return ""
