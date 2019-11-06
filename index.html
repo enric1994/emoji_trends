@@ -2,6 +2,16 @@
 <html lang="en-US">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149266625-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149266625-3');
+    </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon"
@@ -25,38 +35,38 @@
 
 <body>
     <h1>EMOJI TRENDS</h1>
-    <h2>How emojis are used in Twitter</h2>
+    <h2>How emojis are used on Twitter</h2>
     <h3><a href="https://enricmor.eu">by Enric Moreu</a></h3>
     <button type="button" onclick="smoothScroll(document.getElementById('football'))">⚽</button>
     <button type="button" onclick="smoothScroll(document.getElementById('bee'))">🐝</button>
     <button type="button" onclick="smoothScroll(document.getElementById('beer'))">🍺</button>
-    <button type="button" onclick="smoothScroll(document.getElementById('bee3'))">🐸</button>
+    <button type="button" onclick="smoothScroll(document.getElementById('uk'))">🇬🇧</button>
 
     <div class="container">
         <div class="row">
             <div class="col-12 mt-4">
                 <div class="card category">
-                    Soccer Ball⚽
+                    Soccer Ball ⚽
                     <div class="card-body" id="box">
                         <canvas id="football" style="min-height: 50vh"></canvas>
                     </div>
                 </div>
                 <div class="card category">
-                    Bee🐝
+                    Bee 🐝
                     <div class="card-body" id="box">
                         <canvas id="bee" style="min-height: 50vh"></canvas>
                     </div>
                 </div>
                 <div class="card category">
-                    Beer🍺
+                    Beer 🍺
                     <div class="card-body" id="box">
                         <canvas id="beer" style="min-height: 50vh"></canvas>
                     </div>
                 </div>
                 <div class="card category">
-                    Frog🐸
+                    UK 🇬🇧
                     <div class="card-body" id="box">
-                        <canvas id="bee3" style="min-height: 50vh"></canvas>
+                        <canvas id="uk" style="min-height: 50vh"></canvas>
                     </div>
                 </div>
 
@@ -96,7 +106,9 @@
             "July", "August", "September", "October", "November", "December"
         ];
         var annotations = {};
-        annotations["football"] = ["2014-06-12", "Brazil World Cup 2014 started 🇧🇷"];
+        annotations["football"] = [
+            ["2014-06-12", "Brazil World Cup 2014 started 🇧🇷"]
+        ];
         annotations["beer"] = [
             ["2014-07-04", "USA Independence Day 🇺🇸"],
             ["2013-07-04", "USA Independence Day 🇺🇸"],
@@ -156,7 +168,7 @@
                         padding: {
                             left: 0,
                             right: 0,
-                            top: 90,
+                            top: 100,
                             bottom: 0
                         }
                     },
@@ -179,21 +191,24 @@
                                 month = monthNames[date.getMonth()];
                                 day = date.getDate();
                                 var multistringText = [month + " " + day + ", " + year];
-                                multistringText.push(Number(tooltipItem[0].yLabel).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji);
-                                random = Math.random();
-                                if(random > 0.5){
-                                    multistringText.push(parseInt(random * 100) + "% positive tweets😀");
-                                }else{
-                                    multistringText.push(parseInt(random * 100) + 50 + "% negative tweets😡");
+                                multistringText.push(Number(Math.floor(tooltipItem[0].yLabel)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people tweeted a " + emoji);
+                                sentiment = (tooltipItem[0].yLabel % 1) * 1000 - 100;
+                                console.log(sentiment)
+                                if (sentiment == -100) {
+                                    return multistringText;
+                                } else if (sentiment > 100) {
+                                    multistringText.push(parseInt(sentiment / 10) + "% negative tweets😡");
+                                } else {
+                                    multistringText.push(parseInt(sentiment) + "% positive tweets😀");
                                 }
                                 return multistringText;
                             },
                             label: function (tooltipItem) {
                                 if (emoji_name in annotations) {
-                                    for(date in annotations[emoji_name]){
-                                    if (annotations[emoji_name][date][0] == tooltipItem.xLabel) {
-                                        return annotations[emoji_name][date][1];
-                                    }
+                                    for (date in annotations[emoji_name]) {
+                                        if (annotations[emoji_name][date][0] == tooltipItem.xLabel) {
+                                            return annotations[emoji_name][date][1];
+                                        }
                                     }
                                 } else {
                                     return ""
@@ -236,11 +251,12 @@
             d3.csv("output/football2.csv"),
             d3.csv("output/bee2.csv"),
             d3.csv("output/beer2.csv"),
+            d3.csv("output/uk.csv"),
         ]).then(function (files) {
             makeChart(files[0], 'football', '⚽', '#00188f');
             makeChart(files[1], 'bee', '🐝', '#fff100');
             makeChart(files[2], 'beer', '🍺', '#f40e0e');
-            makeChart(files[1], 'bee3', '🐸', '#009e49');
+            makeChart(files[3], 'uk', '🇬🇧', '#009e49');
         })
 
 
