@@ -7,7 +7,7 @@ button {
     outline:none;
     display:inline-block;
     font-size: 5vw;
-    margin: 0 0 15vw 0;
+    /* margin: 0 0 15vw 0; */
 }
 
 #box{
@@ -24,7 +24,7 @@ button {
     text-align: center;
     font-size: 5vh;
     font-family: 'Fredoka One';
-    margin: 0 4vw 0 4vw;
+    margin: 5vw 4vw 0 4vw;
     color: white;
     font-weight: normal;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
