@@ -350,7 +350,7 @@
             });
 
             Chart.defaults.global.legend = false;
-            Chart.defaults.global.animation.duration = 1;
+            Chart.defaults.global.animation.duration = 400;
             Chart.defaults.global.tooltips.intersect = true;
             Chart.defaults.global.tooltips.borderWidth = 3;
             Chart.defaults.global.tooltips.borderColor = 'black';
@@ -364,6 +364,8 @@
             Chart.defaults.global.defaultFontFamily = '"Fredoka One", cursive';
             Chart.defaults.global.maintainAspectRatio = false;
             Chart.defaults.global.responsive = true;
+            Chart.defaults.global.plugins.deferred.delay=400;
+            Chart.defaults.global.plugins.deferred.yOffset='80%'
 
             scale_options = {
 
@@ -388,7 +390,6 @@
             var lineChart = new Chart(mychart.getContext("2d"), {
                 plugins: [
                     ChartRough,
-                    { deferred: { yOffset: 1, delay: 3200, } }
                 ],
                 type: ['line'],
                 options: {
