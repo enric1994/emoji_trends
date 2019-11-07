@@ -43,12 +43,34 @@ h2{
 }
 
 h3{
-    font-size: 2.5vh;
+    font-size: 3vh;
     font-family: 'Fredoka One';
     color: black;
     margin-bottom: 6vw;
     font-weight: normal;
 }
+
+h4{
+    font-size: 5vw;
+    font-family: 'Fredoka One';
+    color: black;
+    
+    font-weight: normal;
+    
+}
+
+
+.fa-twitter {
+    background: #2098e9;
+    color: black;
+    font-size: 4vh;
+  }
+  
+  .fa-github {
+    background: #2098e9;
+    color: black;
+    font-size: 4vh;
+  }
 
 a { 
     color: inherit;
