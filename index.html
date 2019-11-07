@@ -442,9 +442,9 @@
                 }
             });
 
-            if (lineChart.canvas.id in annotations) {
-                for (var i = 0; i < lineChart.data.labels.length; i++) {
-                    pointRadius[i] = 0;
+            for (var i = 0; i < lineChart.data.labels.length; i++) {
+                pointRadius[i] = 0;
+                if (lineChart.canvas.id in annotations) {
                     for (var j = 0; j < annotations[lineChart.canvas.id].length; j++) {
 
                         if (annotations[lineChart.canvas.id][j][0] == lineChart.data.labels[i]) {
