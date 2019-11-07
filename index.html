@@ -301,8 +301,40 @@
             "July", "August", "September", "October", "November", "December"
         ];
         var annotations = {};
+        annotations["santa_claus"] = [
+            ["2013-12-24", "Christmas! 🎄"],
+            ["2014-12-25", "Christmas! 🎄"],
+            ["2015-12-25", "Christmas! 🎄"],
+            ["2016-12-24", "Christmas! 🎄"],
+            ["2017-12-24", "Christmas! 🎄"],
+            ["2018-12-25", "Christmas! 🎄"],
+        ];
+        annotations["rose"] = [
+            ["2013-02-14", "Valentine's Day 💞"],
+            ["2014-02-14", "Valentine's Day 💞"],
+            ["2015-02-14", "Valentine's Day 💞"],
+            ["2017-02-14", "Valentine's Day 💞"],
+            ["2018-02-14", "Valentine's Day 💞"],
+        ];
+        annotations["pig"] = [
+            ["2013-02-14", "Valentine's Day 💞"],
+            ["2019-02-05", "Chinese Year of the Earth Pig 🇨🇳"],
+        ];
         annotations["soccer_ball"] = [
             ["2014-06-12", "Brazil World Cup 2014 started 🇧🇷"],
+        ];
+        annotations["american_football"] = [
+            ["2013-02-04", "Super Bowl XLVII 🇺🇸"],
+            ["2014-02-02", "Super Bowl XLVIII 🇺🇸"],
+            ["2015-02-02", "Super Bowl XLIX 🇺🇸"],
+            ["2016-02-07", "Super Bowl 50 🇺🇸"],
+            ["2017-02-06", "Super Bowl LI 🇺🇸"],
+            ["2018-02-05", "Super Bowl LII 🇺🇸"],
+            ["2019-02-03", "Super Bowl LIII 🇺🇸"],
+        ];
+        annotations["spain"] = [
+            ["2014-06-13", "World Cup Spain vs Netherlands (1-5) ⚽"],
+            ["2018-06-15", "World Cup Portugal vs Spain (3-3) ⚽"],
         ];
         annotations["beer"] = [
             ["2014-07-04", "USA Independence Day 🇺🇸"],
@@ -392,7 +424,7 @@
                                 if (sentiment == -100) {
                                     return multistringText;
                                 } else if (sentiment > 100) {
-                                    multistringText.push(parseInt(sentiment / 10) + "% negative tweets😡");
+                                    multistringText.push(parseInt(100 - (sentiment / 10)) + "% negative tweets😡");
                                 } else {
                                     multistringText.push(parseInt(sentiment) + "% positive tweets😀");
                                 }
@@ -448,7 +480,7 @@
                     for (var j = 0; j < annotations[lineChart.canvas.id].length; j++) {
 
                         if (annotations[lineChart.canvas.id][j][0] == lineChart.data.labels[i]) {
-                            pointRadius[i] = 8;
+                            pointRadius[i] = 6;
                         }
                     }
                 }
