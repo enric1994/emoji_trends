@@ -43,6 +43,33 @@
             <a href="https://github.com/enric1994" target="_blank" class="fa fa-github"></a>
             <a href="https://twitter.com/enric_moreu" target="_blank" class="fa fa-twitter"></a>
         </h3>
+
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><span>🔝</span></button>
+
+        
+        <script>
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
+        
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+        
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+          } else {
+            mybutton.style.display = "none";
+          }
+        }
+        
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }
+        </script>
+
+
         <button type="button"
             onclick="document.getElementById('santa_claus').parentElement.parentElement.scrollIntoView();">🎅</button>
         <button type="button"
