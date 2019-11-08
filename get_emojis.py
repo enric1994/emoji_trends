@@ -13,45 +13,101 @@ import time
 # Start webserver python -m SimpleHTTPServer 8000
 
 MAX_LOAD_AVG = 4
-start_date = datetime.datetime(2010,1,1)
-days_number = 3500
+start_date = datetime.datetime(2013,1,1)
+days_number = 2410
 
 
 emojis=[
-    ["football","⚽"],
-    ["bee","🐝"],
-    ["american_football","🏈"],
-    ["uk","🇬🇧"],
-    ["spain","🇪🇸"],
-    ["catalonia", "🎗️"],
-    ["shooting_star","🌠"],
-    ["factory", "🏭"],
-    ["pig", "🐖"],
-    ["panda", "🐼"],
-    ["snake", "🐍"],
-    ["santa","🎅"],
-    ["fuel", "⛽"],
-    ["game","🎮"],
-    ["beer","🍺"],
-    ["chart_incr","📈"],
-    ["chart_decr","📉"],
-    ["japan","🇯🇵"],
-    ["korea","🇰🇷"],
-    ["germany","🇩🇪"],
-    ["china","🇨🇳"],
-    ["france","🇫🇷"],
-    ["itlay","🇮🇹"],
-    ["money","💸"],
-    ["rose", "🌹"],
-    ["recycle","♻️"],
-    ["broken", "💔"],
-    ["angry","😠"]
+    ["pile_of_poo","💩"],
+    ["musical_note","🎵"],
+    ["pistol","🔫"],
+    ["airplane","✈️"],
+    ["ghost", "👻"],
+    ["movie_camera","🎥"],
+    ["pizza", "🍕"],
+    ["snowflake", "❄️"],
+    ["four_leaf_clover", "🍀"],
+    ["balloon", "🎈"],
+    ["trophy","🏆"],
+    ["us", "🇺🇸"],
+    ["wrapped_gift","🎁"],
+    ["rocket","🚀"],
+    ["fallen_leaf","🍂"],
+    ["bomb","💣"],
+    ["basketball","🏀"],
+    ["books","📚"],
+    ["baby","👶"],
+    ["guitar","🎸"],
+    ["alien_monster","👾"],
+    ["candy","🍬"],
+    ["graduation_cap","🎓"],
+    ["cookie", "🍪"],
+    ["baseball","⚾"],
+    ["cigarette", "🚬"],
+    ["syringe","💉"],
+    ["soft_ice_cream","🍦"],
+    ["envelope", "✉️"],
+    ["ballot_box_with_ballot","🗳️"],
+    ["top_hat", "🎩"],
+    ["hourglass_done", "⌛"],
+    ["calendar", "📅"],
+    ["bicycle", "🚲"],
+    ["ring","💍"],
+    ["clapper_board", "🎬"],
+    ["light_bulb","💡"],
+    ["bikini","👙"],
+    ["chequered_flag","🏁"],
+    ["violin","🎻"],
+    ["womens_room","🚺"],
+    ["mens_room","🚹"],
+    ["church","⛪"],
+    ["kitchen_knife","🔪"],
+    ["rainbow","🌈"],
+    ["hong_kong","🇭🇰"],
+    ["brazil","🇧🇷"],
+    ["syria", "🇸🇾"],
+    ["eritrea","🇪🇷"],
+    ["palestinian_territories", "🇵🇸"],
+    ["india","🇮🇳"],
+    ["ireland","🇮🇪"],
+    ["skis", "🎿"],
+    ["snowboarder","🏂"],
+    ["wheelchair_symbol", "♿"],
+    ["toilet", "🚽"],
+    ["dog", "🐶"],
+    ["cat", "🐱"],
+    ["lion","🦁"],
+    ["horse", "🐴"],
+    ["unicorn","🦄"],
+    ["cow","🐮"],
+    ["mouse","🐭"],
+    ["rabbit","🐰"],
+    ["bear","🐻"],
+    ["koala","🐨"],
+    ["elephant","🐘"],
+    ["chicken","🐔"],
+    ["bird","🐦"],
+    ["penguin","🐧"],
+    ["dragon","🐲"],
+    ["turtle", "🐢"],
+    ["crocodile","🐊"],
+    ["fish", "🐟"],
+    ["snail","🐌"],
+    ["cactus","🌵"],
+    ["tree","🌳"],
+    ["scissors","✂️"],
+    ["apple","🍎"],
+    ["watermelon","🍉"],
+    ["pear", "🍐"],
+    ["lemon","🍋"],
+    ["tomato", "🍅"],
+    ["banana","🍌"]
     
 ]
 
 for emoji in emojis:
 
-    os.makedirs('results/' + emoji[0], exist_ok=True)
+    os.makedirs('/media/enric/enric_hdd/datasets/emoji_trends/emojis_raw/' + emoji[0], exist_ok=True)
 
 
     for i in range(days_number):
@@ -79,7 +135,7 @@ for emoji in emojis:
 
         os.system('python3 Exporter.py --lang "en" --querysearch "{}" --maxtweets 100000000 --output={}.csv --since {}-{}-{} --until {}-{}-{} &'.format(
             emoji[1],
-            'results/{}/{}_{}-{}-{}'.format(emoji[0], emoji[0], current_year, current_month, current_day),
+            '/media/enric/enric_hdd/datasets/emoji_trends/emojis_raw/{}/{}_{}-{}-{}'.format(emoji[0], emoji[0], current_year, current_month, current_day),
             current_year,current_month,current_day,
             next_year,next_month,next_day
         ))
