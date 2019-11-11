@@ -1,6 +1,6 @@
-# Emoji Trends
+# Emoji Trends: How emojis are used on Twitter
 
-## How emojis are used on Twitter
+![Hits](https://hitcounter.pythonanywhere.com/count/tag.svg?url=https%3A%2F%2Fgithub.com%2Fenric1994%2Femoji_trends)
 
 ### Scraping
 The tweets have been collected using the [GetOldTweets-python](https://github.com/fajarmf10/GetOldTweets-python) fork that includes emoji scrapping support. The Python script bypass some limitations of Twitter Official API in terms like accessing old tweets and requests limit.
@@ -8,7 +8,7 @@ The tweets have been collected using the [GetOldTweets-python](https://github.co
 The script used to download the tweets is composed by the following parameters:
 `python3 Exporter.py --lang "en" --querysearch "🍎" --since 2014-02-03 --until 2014-02-04 &`
 
-* lang "en": Filter the language of the tweets although is not always working, so tweets in other languages may appear in the dataset. English is the language selected to filter the tweets.
+* lang "en": Filters the language of the tweets although is not always working, so tweets in other languages may appear in the dataset. English is the language selected to filter the tweets.
 * querysearch "🍎": The text or emoji to be collected.
 * since/until: tweet's date range. A one day range has been used for this project.
 
@@ -23,7 +23,7 @@ However, only the `date` and `emoji` columns are used for this project.
 The processed data is composed by 2405 values with the daily usage of each emoji over the years. To smoothly represent the data in the browser the [Largest-Triangle-Three-Buckets (LTTB) downsampling algorithm](https://github.com/devoxi/lttb-py) is applied to get 50 data points. The downsampled data keep the maximums/minimums while the data spacing is reasonable.
 
 ### Chart.js
-(Chart.js)[https://www.chartjs.org/] is a Javascript library to create highly customizable interactive graphs .
+In order to visualize the data, [Chart.js](https://www.chartjs.org/) has been used, it is a Javascript library to create highly customizable interactive graphs on the browser.
 
 ### Plugins
 
