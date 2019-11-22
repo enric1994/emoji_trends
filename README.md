@@ -20,7 +20,7 @@ The script used to download the tweets is composed by the following parameters:
 
 The scraping speed is around 3.7 million tweets per hour when running the script in parallel. Specifically, one instance of the script has been used for each day and for each emoji.
 
-In terms of accuracy, the scrapper miss some tweets and missclassify the language of some tweets in other languages as English. However, the data extracted provide good insights in terms of the frequency of the different emojis.
+In terms of accuracy, the scrapper miss some tweets and missclassify the language of some tweets in other languages as English. However, the data extracted provide good insights in terms of the emoji frequency.
 
 ### Data Structure
 The data obtained have the following structure:
@@ -52,7 +52,6 @@ The following examples are used in the website:
 
 ### Some stats: 
 
-* count total tweets: (still collecting...)
-* count total tweets per emoji: (still collecting...)
+* Total tweets: still counting...
 * Tweets scrapped per hour: 3.7 million
-* Memory usage: (still growing...)
+* Dataset size: 798GB
