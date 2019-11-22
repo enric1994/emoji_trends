@@ -52,6 +52,6 @@ The following examples are used in the website:
 
 ### Some stats: 
 
-* Total tweets: still counting...
-* Tweets scrapped per hour: 3.7 million
+* Total tweets: 3,015,922,953
 * Dataset size: 798GB
+* Tweets scrapped per hour: 3.7 million (aprox)
