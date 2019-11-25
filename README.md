@@ -23,7 +23,7 @@ The scraping speed is around 3.7 million tweets per hour when running the script
 In terms of accuracy, the scrapper miss some tweets and missclassify the language of some tweets in other languages as English. However, the data extracted provide good insights in terms of the emoji frequency.
 
 ### Data Structure
-The data obtained have the following structure:
+The data obtained has the following structure:
 `"username","date","retweets","favorites","text","geo","mentions","hashtags","id","permalink","emoji"`
 However, only the `date` and `emoji` columns are used for this project.
 
@@ -34,7 +34,6 @@ The processed data is composed by 2405 values with the daily usage of each emoji
 In order to visualize the data, [Chart.js](https://www.chartjs.org/) has been used. 
 Chart.js is a Javascript library to create highly customizable interactive graphs on the browser.
 
-### Chart.js Plugins
 The following plugins have been used to customize the charts:
 
 * [Rough](https://github.com/nagix/chartjs-plugin-rough): adds a cartoon-like style too the charts.
