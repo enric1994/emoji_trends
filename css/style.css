@@ -271,5 +271,10 @@ h1 {
 .img { display: inline-block;  }
 
 .siteFooterBar {
-  background: white;
+  background: #99CFDF;
+  border-radius: 25px;
+    border-width: 5px;
+    border-color: black;
+    border-style: solid;
+    margin: 0 2vw 2vw 2vw;
 }

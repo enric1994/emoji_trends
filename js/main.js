@@ -30,7 +30,7 @@ function emojiloader() {
             "July", "August", "September", "October", "November", "December"
         ];
         var annotations = {};
-        annotations["santa_claus"] = [
+        annotations["santa"] = [
             ["2013-12-24", "Christmas! 🎄"],
             ["2014-12-25", "Christmas! 🎄"],
             ["2015-12-25", "Christmas! 🎄"],
@@ -48,9 +48,6 @@ function emojiloader() {
         annotations["pig"] = [
             ["2019-02-05", "Chinese Year of the Earth Pig 🇨🇳"],
         ];
-        annotations["soccer_ball"] = [
-            ["2014-06-12", "Brazil World Cup 2014 started 🇧🇷"],
-        ];
         annotations["american_football"] = [
             ["2013-02-04", "Super Bowl XLVII 🇺🇸"],
             ["2014-02-02", "Super Bowl XLVIII 🇺🇸"],
@@ -59,10 +56,6 @@ function emojiloader() {
             ["2017-02-06", "Super Bowl LI 🇺🇸"],
             ["2018-02-05", "Super Bowl LII 🇺🇸"],
             ["2019-02-03", "Super Bowl LIII 🇺🇸"],
-        ];
-        annotations["spain"] = [
-            ["2014-06-13", "World Cup Spain-Netherlands(1-5) ⚽"],
-            ["2018-06-15", "World Cup Portugal-Spain(3-3) ⚽"],
         ];
         annotations["beer"] = [
             ["2014-07-04", "USA Independence Day 🇺🇸"],
