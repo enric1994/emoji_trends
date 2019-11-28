@@ -1,6 +1,6 @@
 # Emoji Trends: How emojis are used on Twitter
 
-Webpage: [emoji.enricmor.eu](emoji.enricmor.eu)
+Webpage: [emoji.enricmor.eu](https://emoji.enricmor.eu)
 
 ![Hits](https://hitcounter.pythonanywhere.com/count/tag.svg?url=https%3A%2F%2Fgithub.com%2Fenric1994%2Femoji_trends)
 
