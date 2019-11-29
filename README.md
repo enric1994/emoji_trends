@@ -54,3 +54,9 @@ The following examples are used in the website:
 * Total tweets: 3,015,922,953
 * Dataset size: 798GB
 * Tweets scrapped per hour: 3.7 million (aprox)
+
+### Similar projects
+
+There are some similar projects involving tweets and emojis that I used as a source of inspiration, specially [Ribbonline](https://danielbalcells.github.io/ribbonline/) from my friend Dani Balcells.
+
+Other related projects are: [Emojitracker](http://www.emojitracker.com/) and [Twitter Emoji Race](https://observablehq.com/@mbostock/twitter-emoji-race)
