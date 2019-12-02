@@ -90,7 +90,28 @@ function emojiloader() {
 
             scale_options = {
 
-                yAxes: [{ display: false }],
+                yAxes: [{
+                    
+                    ticks: {
+                        maxTicksLimit: 5,
+                        min: ' ',
+                        fontColor: 'black',
+                        fontSize: 20,
+                        callback: function(value, index, values) {
+                            if(value>=1000){
+                                return  value/1000 + 'k';
+                            }
+                            else{
+                                return value;
+                            }
+                            
+                        }
+                    },
+                    gridLines: {
+                        lineWidth: 4,
+                        color: 'black'
+                    },
+                }],
                 xAxes: [{
                     type: 'time',
                     time: {
