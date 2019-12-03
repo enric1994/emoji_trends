@@ -13,7 +13,7 @@ svg {
    }
 
    
-button {
+.mybutton {
     background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
@@ -23,6 +23,18 @@ button {
     display:inline-block;
     font-size: 5.7vw;
     /* margin: 0 0 15vw 0; */
+}
+
+button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  display:inline-block;
+  font-size: 5.7vw;
+  /* margin: 0 0 15vw 0; */
 }
 
 #box{
